@@ -1,0 +1,222 @@
+{% extends '_layout.html' %}
+{% load static %}
+
+{% block title %}Profile {% endblock title %}
+
+{% block username %}{{username}}{% endblock username %}
+
+{% block stylesheet %}
+  	.rounded-circle-image{
+  	border-radius: 50% !important;
+  	width:250px;
+  	height:250px;
+  }
+
+  .profile-wrapper{
+  background:#fff;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
+  padding-top: 10px;
+
+}
+
+
+.list-group {
+	margin-top: 10px;
+}
+
+span{
+	color: #403c3c;        {% comment %}    #c7c7c7 {% endcomment %}
+  font-weight: lighter;
+  font-size: 16px;
+}
+
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    font-size:17px;
+}
+
+  #override-start{
+    background:none !important;
+    top: 35% !important;
+    right:13px;
+    color:#000;
+    font-size: 24px;
+
+    }
+
+    .alert-warning{
+        background:#fd7b7b;
+    }
+
+    .alert-success {
+        background-color: #82b72a;
+    }
+
+    .alert-success,.alert-warning{
+        font-size:16px;
+    }
+
+    .employee-name-title{
+    color: #3873b1;
+    font-weight: 600;
+    font-variant: petite-caps;
+    font-size: 3.1rem !important;
+  }
+
+  span,.list-group-item > div{
+  font-variant: petite-caps;
+}
+
+
+.panel-default>.panel-heading {
+    color: #fff !important;
+    background-color: #2d88a9 !important;
+}
+
+.panel-title a:hover{
+  color:#e6e4e4;
+}
+
+.panel-title a:active{
+  color:#e6e4e4;
+}
+
+.panel-title a:focus{
+  color:#e6e4e4;
+}
+
+
+
+
+
+{% endblock stylesheet %}<!-- STYLESHEETS -->
+
+{% block bodycontent %}
+  
+
+    
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#timesheet" data-toggle="tab">Time Sheet</a></li>
+                  {% comment %} <li class="nav-item"><a class="nav-link" href="#address" data-toggle="tab">Address Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#family" data-toggle="tab">Family Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#accounts" data-toggle="tab">Account Info</a></li> {% endcomment %}
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="timesheet">
+                    <!-- Post -->
+                    {% comment %} <div class="col col-lg-6"> {% endcomment %}
+                                       
+                                        {% if timesheet_data %}
+                                          
+                                          <div class="list-group" id="list-tab" role="tablist">
+                                            {% comment %} <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Salutation</span> <div>{{ employee.title }}</div>
+                                            </a> {% endcomment %}
+
+                                            {% if timesheet_data.Employee_Id %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Employee Id</span> <div> {{ timesheet_data.Employee_Id}} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% if timesheet_data.Employee_Id %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list"  href="{% url 'account:employee_profile' emp_data.id %}" ><span>Employee Name</span> 
+                                            <div> {{ emp_data.First_Name}} {{ emp_data.Last_Name}} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% if timesheet_data.Project %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Project</span> <div> {{ timesheet_data.Project }} </div>
+                                            </a>
+                                            {% endif %}                                            
+
+                                            {% comment %} {% if employee.othername %}
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Othername</span> <div>{{ employee.othername}} </div>
+                                            </a>
+                                            {% endif %} {% endcomment %}
+
+                                            {% if timesheet_data.Activity %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Activity</span> <div> {{ timesheet_data.Activity }}
+                                            </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% if timesheet_data.Location %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Location </span><div>{{ timesheet_data.Location }} </div>
+                                            </a>
+                                            {% endif %}
+                                         
+
+
+                                            {% if timesheet_data.Status %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Status</span> <div> {{ timesheet_data.Status }}</div></a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.tel %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Bio</span> <div> {{ employee.bio }} </div></a>
+                                            {% endif %} {% endcomment %}
+
+
+                                            {% if timesheet_data.Start_Time %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Start Time</span><div>{{ start_time}}</div></a>
+                                            {% endif %}
+
+                                            {% if timesheet_data.End_Time %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>End Time</span> <div>{{ end_time }}</div></a>
+                                            {% endif %}
+
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Total Work Time</span> <div>{{ total_work_hour }}</div></a>
+
+
+                                            {% comment %} {% if request.user.is_superuser %} {% endcomment %}
+                                            {% comment %} <div>
+                                              <span><a href="{% url 'account:update_employee_detail' emp_data.id %}">Edit</a></span>
+                                            </div> {% endcomment %}
+
+                                            {% comment %} {% endif %} {% endcomment %}
+
+                                          </div>
+
+                                        {% else %}
+
+                                        <h4>No Information found,to add click <a href="#">here</a></h4>
+
+                                        {% endif %}
+                                  {% comment %} </div> {% endcomment %}
+                    <!-- /.post -->
+
+                  </div>
+                  
+
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+{% endblock bodycontent %}

@@ -1,0 +1,528 @@
+{% extends '_layout.html' %}
+{% load static %}
+
+{% block title %}Profile {% endblock title %}
+
+{% block username %}{{username}}{% endblock username %}
+
+{% block stylesheet %}
+  	.rounded-circle-image{
+  	border-radius: 50% !important;
+  	width:250px;
+  	height:250px;
+  }
+
+  .profile-wrapper{
+  background:#fff;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
+  padding-top: 10px;
+
+}
+
+
+.list-group {
+	margin-top: 10px;
+}
+
+span{
+	color: #c7c7c7;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    font-size:17px;
+}
+
+  #override-start{
+    background:none !important;
+    top: 35% !important;
+    right:13px;
+    color:#000;
+    font-size: 24px;
+
+    }
+
+    .alert-warning{
+        background:#fd7b7b;
+    }
+
+    .alert-success {
+        background-color: #82b72a;
+    }
+
+    .alert-success,.alert-warning{
+        font-size:16px;
+    }
+
+    .employee-name-title{
+    color: #3873b1;
+    font-weight: 600;
+    font-variant: petite-caps;
+    font-size: 3.1rem !important;
+  }
+
+  span,.list-group-item > div{
+  font-variant: petite-caps;
+}
+
+
+.panel-default>.panel-heading {
+    color: #fff !important;
+    background-color: #2d88a9 !important;
+}
+
+.panel-title a:hover{
+  color:#e6e4e4;
+}
+
+.panel-title a:active{
+  color:#e6e4e4;
+}
+
+.panel-title a:focus{
+  color:#e6e4e4;
+}
+
+
+
+
+
+{% endblock stylesheet %}<!-- STYLESHEETS -->
+
+{% block bodycontent %}
+  
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Profile</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            {% comment %} {% for emp in emps_data %} {% endcomment %}
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="/media/img/user4-128x128.jpg"
+                       alt="User profile picture">
+                </div>
+                  
+                <h3 class="profile-username text-center">{{ emp_data.First_Name }} {{ emp_data.Last_Name }}</h3>
+
+                <p class="text-muted text-center">Software Engineer</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Followers</b> <a class="float-right">1,322</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Following</b> <a class="float-right">543</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Friends</b> <a class="float-right">13,287</a>
+                  </li>
+                </ul>
+
+                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            {% comment %} {% endfor %} {% endcomment %}
+
+            <!-- About Me Box -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">About Me</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                <p class="text-muted">
+                  B.S. in Computer Science from the University of Tennessee at Knoxville
+                </p>
+
+                <hr>
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                <p class="text-muted">Malibu, California</p>
+
+                <hr>
+
+                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                <p class="text-muted">
+                  <span class="tag tag-danger">UI Design</span>
+                  <span class="tag tag-success">Coding</span>
+                  <span class="tag tag-info">Javascript</span>
+                  <span class="tag tag-warning">PHP</span>
+                  <span class="tag tag-primary">Node.js</span>
+                </p>
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#personal" data-toggle="tab">Personal Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#address" data-toggle="tab">Address Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#family" data-toggle="tab">Family Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#accounts" data-toggle="tab">Account Info</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="personal">
+                    <!-- Post -->
+                    <div class="col col-lg-6">
+                                       
+                                        {% if emp_data %}
+                                          
+                                          <div class="list-group" id="list-tab" role="tablist">
+                                            {% comment %} <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Salutation</span> <div>{{ employee.title }}</div>
+                                            </a> {% endcomment %}
+
+                                            {% if emp_data.First_Name %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Firstname</span> <div> {{ emp_data.First_Name}} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% if emp_data.Last_Name %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Lastname</span> <div> {{ emp_data.Last_Name }} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.othername %}
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Othername</span> <div>{{ employee.othername}} </div>
+                                            </a>
+                                            {% endif %} {% endcomment %}
+
+                                            {% if emp_data.Gender %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Gender</span> <div> {{ emp_data.Gender }}
+                                            </div>
+                                            </a>
+                                            {% endif %}
+
+                                            <!-- recent added 29/03/19 -->
+                                            {% if emp_data.Email %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Email </span><div>{{ emp_data.Email }} </div>
+                                            </a>
+                                            {% endif %}
+                                         
+
+
+                                            {% if emp_data.Phone %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Contact</span> <div> {{ emp_data.Phone }}</div></a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.tel %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Bio</span> <div> {{ employee.bio }} </div></a>
+                                            {% endif %} {% endcomment %}
+
+
+                                            {% if emp_data.Date_Of_Birth %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Date of Birth</span><div>{{ emp_data.Date_Of_Birth}}</div></a>
+                                            {% endif %}
+
+                                            {% if emp_data.Religion %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Religion</span> <div>{{ emp_data.Religion }}</div></a>
+                                            {% endif %}
+
+                                            {% if emp_data.Nationality %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Nationality</span> <div>{{ emp_data.Nationality }}</div></a>
+                                            {% endif %}
+
+                                            {% if emp_data.Is_Phone_Verified %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Is Phone Verified</span> <div>{{ emp_data.Is_Phone_Verified }}</div></a>
+                                            {% endif %}
+
+                                            {% if emp_data.Is_Email_Verified %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Is Email Verified</span> <div>{{ emp_data.Is_Email_Verified }}</div></a>
+                                            {% endif %}
+
+                                            {% comment %} {% if request.user.is_superuser %} {% endcomment %}
+                                            <div>
+                                              <span><a href="{% url 'account:update_employee_detail' emp_data.id %}">Edit</a></span>
+                                            </div>
+
+                                            {% comment %} {% endif %} {% endcomment %}
+
+                                          </div>
+
+                                        {% else %}
+
+                                        <h4>No Information found,to add click <a href="#">here</a></h4>
+
+                                        {% endif %}
+                                  </div>
+                    <!-- /.post -->
+
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="address">
+                    <!-- The timeline -->
+                    <div class="col col-lg-6">
+                                       
+                                        {% if address_data %}
+                                          
+                                          <div class="list-group" id="list-tab" role="tablist">
+                                            {% comment %} <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Salutation</span> <div>{{ employee.title }}</div>
+                                            </a> {% endcomment %}
+
+                                            {% if address_data.Address_Line1 %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Address Line1</span> <div> {{ address_data.Address_Line1}} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% if address_data.Address_Line2 %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Address Line2</span> <div> {{ address_data.Address_Line2 }} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.othername %}
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Othername</span> <div>{{ employee.othername}} </div>
+                                            </a>
+                                            {% endif %} {% endcomment %}
+
+                                            {% if address_data.Street %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Street</span> <div> {{ address_data.Street }}
+                                            </div>
+                                            </a>
+                                            {% endif %}
+
+                                            <!-- recent added 29/03/19 -->
+                                            {% if address_data.City %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>City </span><div>{{ address_data.City }} </div>
+                                            </a>
+                                            {% endif %}
+                                         
+
+
+                                            {% if address_data.Zip_Code %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Zip Code</span> <div> {{ address_data.Zip_Code }}</div></a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.tel %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Bio</span> <div> {{ employee.bio }} </div></a>
+                                            {% endif %} {% endcomment %}
+
+
+                                            {% if address_data.Address_Type %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Address Type</span><div>{{ address_data.Address_Type}}</div></a>
+                                            {% endif %}
+
+                                            {% if address_data.Is_Address_Verified %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Is Address Verified</span> <div>{{ address_data.Is_Address_Verified }}</div></a>
+                                            {% endif %}
+
+
+                                            {% comment %} {% if request.user.is_superuser %} {% endcomment %}
+                                            <div>
+                                              <span><a href="{% url 'account:update_address' address_data.id %}">Edit</a></span>
+                                            </div>
+
+                                            {% comment %} {% endif %} {% endcomment %}
+
+                                          </div>
+
+                                        {% else %}
+
+                                        <h4>No Information found,to add click <a href="#">here</a></h4>
+
+                                        {% endif %}
+                                  </div>
+                    <!-- /.post -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="family">
+                    <!-- The timeline -->
+                    <div class="col col-lg-6">
+                                       
+                                        {% if family_data %}
+                                          
+                                          <div class="list-group" id="list-tab" role="tablist">
+                                            {% comment %} <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Salutation</span> <div>{{ employee.title }}</div>
+                                            </a> {% endcomment %}
+
+                                            {% if family_data.First_Name %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>First Name</span> <div> {{ family_data.First_Name}} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% if family_data.Last_Name %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Last Name</span> <div> {{ family_data.Last_Name }} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.othername %}
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Othername</span> <div>{{ employee.othername}} </div>
+                                            </a>
+                                            {% endif %} {% endcomment %}
+
+                                            {% if family_data.Relationship_Type %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Relationship Type</span> <div> {{ family_data.Relationship_Type }}
+                                            </div>
+                                            </a>
+                                            {% endif %}
+
+                                            <!-- recent added 29/03/19 -->
+                                            {% if family_data.Occupation %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Occupation</span><div>{{ family_data.Occupation }} </div>
+                                            </a>
+                                            {% endif %}
+                                         
+
+
+                                            {% if family_data.Phone %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Phone</span> <div> {{ family_data.Phone }}</div></a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.tel %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Bio</span> <div> {{ employee.bio }} </div></a>
+                                            {% endif %} {% endcomment %}
+
+
+                                            {% if family_data.Email %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Email</span><div>{{ family_data.Email }}</div></a>
+                                            {% endif %}
+
+                                            {% if family_data.Is_Details_Verified %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Is Details Verified</span> <div>{{ family_data.Is_Details_Verified }}</div></a>
+                                            {% endif %}
+
+                                            {% if family_data.Is_Phone_Verified %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Is Phone Verified</span> <div>{{ family_data.Is_Phone_Verified }}</div></a>
+                                            {% endif %}
+
+                                            {% if family_data.Is_Email_Verified %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Is Email Verified</span> <div>{{ family_data.Is_Email_Verified }}</div></a>
+                                            {% endif %}
+
+
+                                            {% comment %} {% if request.user.is_superuser %} {% endcomment %}
+                                            <div>
+                                              <span><a href="{% url 'account:update_family' family_data.id %}">Edit</a></span>
+                                            </div>
+
+                                            {% comment %} {% endif %} {% endcomment %}
+
+                                          </div>
+
+                                        {% else %}
+
+                                        <h4>No Information found,to add click <a href="#">here</a></h4>
+
+                                        {% endif %}
+                                  </div>
+                    <!-- /.post -->
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="accounts">
+                    <div class="col col-lg-6">
+                                       
+                                        {% if account_data %}
+                                          
+                                          <div class="list-group" id="list-tab" role="tablist">
+                                            {% comment %} <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Salutation</span> <div>{{ employee.title }}</div>
+                                            </a> {% endcomment %}
+
+                                            {% if account_data.Bank_Name %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Bank Name</span> <div> {{ account_data.Bank_Name}} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% if account_data.Account_Number %}
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Account Number</span> <div> {{ account_data.Account_Number }} </div>
+                                            </a>
+                                            {% endif %}
+
+                                            {% comment %} {% if employee.othername %}
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Othername</span> <div>{{ employee.othername}} </div>
+                                            </a>
+                                            {% endif %} {% endcomment %}
+
+                                            {% if account_data.Address %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>Address</span> <div> {{ account_data.Address }}
+                                            </div>
+                                            </a>
+                                            {% endif %}
+
+                                            <!-- recent added 29/03/19 -->
+                                            {% if account_data.IFSC_Code %}
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="" role="tab" aria-controls=""><span>IFSC_Code</span><div>{{ account_data.IFSC_Code }} </div>
+                                            </a>
+                                            {% endif %}
+
+
+                                            {% comment %} {% if request.user.is_superuser %} {% endcomment %}
+                                            <div>
+                                              <span><a href="{% url 'account:update_account' account_data.id %}">Edit</a></span>
+                                            </div>
+
+                                            {% comment %} {% endif %} {% endcomment %}
+
+                                          </div>
+
+                                        {% else %}
+
+                                        <h4>No Information found,to add click <a href="#">here</a></h4>
+
+                                        {% endif %}
+                                  </div>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+{% endblock bodycontent %}

@@ -1,0 +1,126 @@
+{% extends '_layout.html' %}
+
+{% load static %}
+
+{% block username %}{{username}}{% endblock username %}
+
+{% block head %}   
+  {% block title %}Softmind Infotech | Employee List{% endblock title %}
+  <!-- jsGrid -->
+  <link rel="stylesheet" href="{% static 'plugins/jsgrid/jsgrid.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/jsgrid/jsgrid-theme.min.css' %}">
+{% endblock head %}
+{% block bodycontent %}
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>jsGrid</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">jsGrid</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Employee Table</h3>
+        </div>
+
+        <div id="jsGrid1" class="jsgrid" style="position: relative; height: 100%; width: 100%;">
+          <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+              <table class="jsgrid-table">
+							  <thead>
+							    <tr class="jsgrid-header-row">
+							      <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;" scope="col">Id</th>
+							      <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;" scope="col">Name</th>
+							      <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;" scope="col">Email</th>
+							      <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;" scope="col">Phone</th>
+							      <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;" scope="col">Actions</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  	{% for emp in emps_list %}
+							    <tr>
+
+							      <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ emp.id }}</td>
+							      <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ emp.First_Name}}</td>
+							      <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ emp.Email }}</td>
+							      <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ emp.Phone }}</td>
+
+							      <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"> 
+							      	<a href="{% url 'account:employee_profile' emp.id %}">
+							      	    <span>view</span>
+							      	</a>
+
+                      {% comment %} <a href="{% url 'account:employee_edit_profile' emp.id %}">
+							      	    <span>Edit</span>
+							      	</a> {% endcomment %}
+							      	
+							      	{% comment %} {% if progressreport.is_rejected %}
+							      		<a href="{% url 'dashboard:unreject' progressreport.id %}">unreject</a>
+							      	{% endif %} {% endcomment %}
+							        
+							      </td>
+							    </tr>
+
+							    {% endfor %}
+
+							  </tbody>
+
+						  </table>
+          </div>
+        </div>
+                
+        {% comment %} <!-- /.card-header -->
+        <div class="card-body">
+          <div id="jsGrid1"></div>
+        </div>
+        <!-- /.card-body --> {% endcomment %}
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  
+
+{% endblock bodycontent %}
+
+{% block extrajs %}
+
+
+<!-- jsGrid -->
+<script src="{% static 'plugins/jsgrid/demos/db.js' %}"></script>
+<script src="{% static 'plugins/jsgrid/jsgrid.min.js' %}"></script>
+<!-- page script -->
+{% comment %} <script>
+  $(function () {
+    $("#jsGrid1").jsGrid({
+        height: "100%",
+        width: "100%",
+
+        sorting: true,
+        paging: true,
+
+        data: db.clients,
+
+        fields: [
+            { name: "Name", type: "text", width: 150 },
+            { name: "Age", type: "number", width: 50 },
+            { name: "Address", type: "text", width: 200 },
+            { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
+            { name: "Married", type: "checkbox", title: "Is Married" }
+        ]
+    });
+  });
+</script> {% endcomment %}
+{% endblock extrajs %}
+

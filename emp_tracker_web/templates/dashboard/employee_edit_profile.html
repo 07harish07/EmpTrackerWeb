@@ -1,0 +1,446 @@
+{% extends '_layout.html' %}
+{% load static %}
+
+{% block title %}Edit Profile {% endblock title %}
+
+{% block username %}Test{% endblock username %}
+
+{% block bodycontent %}
+  
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Profile</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            {% comment %} {% for emp in emps_data %} {% endcomment %}
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="/media/img/user4-128x128.jpg"
+                       alt="User profile picture">
+                </div>
+                  
+                <h3 class="profile-username text-center">Staff Test</h3>
+
+                <p class="text-muted text-center">Software Engineer</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Followers</b> <a class="float-right">1,322</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Following</b> <a class="float-right">543</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Friends</b> <a class="float-right">13,287</a>
+                  </li>
+                </ul>
+
+                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            {% comment %} {% endfor %} {% endcomment %}
+
+            <!-- About Me Box -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">About Me</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                <p class="text-muted">
+                  B.S. in Computer Science from the University of Tennessee at Knoxville
+                </p>
+
+                <hr>
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                <p class="text-muted">Malibu, California</p>
+
+                <hr>
+
+                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                <p class="text-muted">
+                  <span class="tag tag-danger">UI Design</span>
+                  <span class="tag tag-success">Coding</span>
+                  <span class="tag tag-info">Javascript</span>
+                  <span class="tag tag-warning">PHP</span>
+                  <span class="tag tag-primary">Node.js</span>
+                </p>
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#personal" data-toggle="tab">Personal Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#address" data-toggle="tab">Address Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#family" data-toggle="tab">Family Info</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#account" data-toggle="tab">Account Info</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="personal">
+
+                    <!-- Edit Profile -->
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- jquery validation -->
+                                <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Employee Personal Info<small></small></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form id="emp_Form" action="" method="post">
+                                {% csrf_token %}
+                                    <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="firstname">First Name</label>
+                                        <input type="text" name="emp_firstname" class="form-control" id="firstname" value="{{emp_data.First_Name}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="text" name="emp_lastname" class="form-control" id="lastname" value="Last Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <select class="form-control" name="emp_gender" id="gender">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        </select>
+                                    </div>
+                                    {% comment %} <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="emp_email" class="form-control" id="email" value="E-mail">
+                                    </div> {% endcomment %}
+                                    <div class="form-group">
+                                        <label for="phonenumber">Phone Number</label>
+                                        <input type="tel" name="emp_phonenumber" class="form-control" id="phonenumber" value="Phone Number">
+                                    </div>
+                                    <div class="form-group date">
+                                        <label for="dateofbirth">Date Of Birth</label>
+                                        <input type="text" name="emp_dateofbirth" class="form-control" id="dateofbirth" value="YYYY-MM-DD">                    
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="religion">Religion</label>
+                                        <select class="form-control" name="emp_religion" id="religion" value="Religion">
+                                        <option>Hinduism</option>
+                                        <option>Islam</option>
+                                        <option>Christianity</option>
+                                        <option>Sikhism</option>
+                                        <option>Buddhism</option>
+                                        <option>Jainism</option>
+                                        <option>Zoroastrianism</option>
+                                        <option>Others/Religion not specified</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nationality">Nationality</label>
+                                        <input type="text" name="emp_nationality" class="form-control" id="nationality" value="Nationality">
+                                    </div>
+                                    <div class="form-group checkbox-row">
+                                        <label for="id_Is_Phone_Verified">Is Phone Verified</label>
+                                        <input type="checkbox" name="emp_is_phone_verified" class="vCheckboxLabel" id="id_Is_Phone_Verified">
+                                    </div>
+                                    <div class="form-group checkbox-row">
+                                        <label for="id_Is_Email_Verified">Is Email Verified</label>
+                                        <input type="checkbox" name="emp_is_email_verified" class="vCheckboxLabel" id="id_Is_Email_Verified">
+                                    </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                                </div>
+                                <!-- /.card -->
+                                </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                            <div class="col-md-6">
+
+                            </div>
+                            <!--/.col (right) -->
+                            </div>
+                            <!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                    <!-- /.Edit Profile -->
+
+                    
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="address">
+
+                    <!-- Edit Profile -->
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- jquery validation -->
+                                <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Employee Address<small></small></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form id="addressForm" action="" method="post">
+                                {% csrf_token %}
+                                    <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="addressline1">Address Line1</label>
+                                        <input type="text" name="address_addressline1" class="form-control" id="addressline1" value="Address Line1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addressline2">Address Line2</label>
+                                        <input type="text" name="address_addressline2" class="form-control" id="addressline2" value="Address Line2">
+                                    </div>                  
+                                    <div class="form-group">
+                                        <label for="street">Street</label>
+                                        <input type="text" name="address_street" class="form-control" id="street" value="Street">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" name="address_city" class="form-control" id="city" value="City">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zipcode">Zip Code</label>
+                                        <input type="number" name="address_zipcode" class="form-control" id="zipcode" value="Zip Code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addresstype">Address Type</label>
+                                        <select class="form-control" name="address_addresstype" id="addresstype">
+                                        <option>Current</option>
+                                        <option>Permanent</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group checkbox-row">
+                                        <label for="id_Is_Address_Verified">Is Address Verified</label>
+                                        <input type="checkbox" name="address_is_address_verified" class="vCheckboxLabel" id="id_Is_Address_Verified">
+                                    </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                                </div>
+                                <!-- /.card -->
+                                </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                            <div class="col-md-6">
+
+                            </div>
+                            <!--/.col (right) -->
+                            </div>
+                            <!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                    <!-- /.Edit Profile -->
+
+                    
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="family">
+
+                    <!-- Edit Profile -->
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- jquery validation -->
+                                <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Employee Family Info<small></small></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form id="familyForm" action="" method="post">
+                                {% csrf_token %}
+                                    <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="firstname">First Name</label>
+                                        <input type="text" name="family_firstname" class="form-control" id="firstname" value="First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="text" name="family_lastname" class="form-control" id="lastname" value="Last Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="relationshiptype">Relationship Type</label>
+                                        <input type="text" name="family_relationshiptype" class="form-control" id="relationshiptype" value="Relationship Type">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="occupation">Occupation</label>
+                                        <input type="text" name="family_occupation" class="form-control" id="occupation" value="Occupation">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" name="family_phone" class="form-control" id="phone" value="Phone Number">
+                                    </div>                  
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="family_email" class="form-control" id="email" value="E-mail">
+                                    </div>
+                                    <div class="form-group checkbox-row">
+                                        <label for="id_Is_Details_Verified">Is Details Verified</label>
+                                        <input type="checkbox" name="family_is_details_verified" class="vCheckboxLabel" id="id_Is_Details_Verified">
+                                    </div>
+                                    <div class="form-group checkbox-row">
+                                        <label for="id_Is_Phone_Verified">Is Phone Verified</label>
+                                        <input type="checkbox" name="family_is_phone_verified" class="vCheckboxLabel" id="id_Is_Phone_Verified">
+                                    </div>
+                                    <div class="form-group checkbox-row">
+                                        <label for="id_Is_Email_Verified">Is Email Verified</label>
+                                        <input type="checkbox" name="family_is_email_verified" class="vCheckboxLabel" id="id_Is_Email_Verified">
+                                    </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                                </div>
+                                <!-- /.card -->
+                                </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                            <div class="col-md-6">
+
+                            </div>
+                            <!--/.col (right) -->
+                            </div>
+                            <!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                    <!-- /.Edit Profile -->
+
+                  </div>
+                  <!-- /.tab-pane -->
+                    <div class="tab-pane" id="account">
+
+                    <!-- Edit Profile -->
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- jquery validation -->
+                                <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Add Employee Bank Account Details<small></small></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                <form id="accountInfoForm" action="" method="post">
+                                {% csrf_token %}
+                                    <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="bankname">Bank Name</label>
+                                        <input type="text" name="account_bankname" class="form-control" id="bankname" placeholder="Bank Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accountnumber">Account Number</label>
+                                        <input type="number" name="account_accountnumber" class="form-control" id="accountnumber" placeholder="Account Number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" name="account_address" class="form-control" id="address" placeholder="Address">
+                                    </div>                  
+                                    <div class="form-group">
+                                        <label for="IFSCcode">IFSC Code</label>
+                                        <input type="text" name="account_IFSCcode" class="form-control" id="IFSCcode" placeholder="IFSC Code">
+                                    </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                                </div>
+                                <!-- /.card -->
+                                </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                            <div class="col-md-6">
+
+                            </div>
+                            <!--/.col (right) -->
+                            </div>
+                            <!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                    <!-- /.Edit Profile -->
+
+                    
+                  </div>
+                  <!-- /.tab-pane -->
+                
+
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+{% endblock bodycontent %}
